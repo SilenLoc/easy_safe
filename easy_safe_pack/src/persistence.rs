@@ -1,8 +1,6 @@
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{Read, Write};
-use log::{info};
-
 use serde::{Deserialize, Serialize};
 
 pub struct PersistenceEnv {
@@ -11,7 +9,6 @@ pub struct PersistenceEnv {
 
 impl PersistenceEnv {
     pub fn save_to_local(&self, to_save: &str) {
-        info!("trying to save: {}", to_save);
 
         let mut file = File::create(&self.name).unwrap();
         file.write_all(to_save.as_bytes()).expect("could not write");
@@ -26,14 +23,12 @@ impl PersistenceEnv {
 
     pub fn init_env(&self, with: &str) {
         if File::open(&self.name).is_ok() {} else {
-            info!("trying to init with: {}", &with);
             let mut file = File::create(&self.name).unwrap();
             file.write_all(with.as_bytes()).expect("could not write");
 
             let mut file = File::open(&self.name).unwrap();
             let mut contents = String::new();
             file.read_to_string(&mut contents).expect("could not read");
-            info!("env initiated with: {} and name: {}", contents, &self.name);
         }
     }
 }

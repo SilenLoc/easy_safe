@@ -1,0 +1,64 @@
+[package]
+name = "easy_safe"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "an easy way to save string values on disk, in short -string maps on disk-"
+homepage = "https://easy_safe.rs/"
+documentation = "https://easy_safe.rs/bitflags"
+repository = "https://github.com/SilenLoc/easy_safe"
+readme = "README.md"
+categories = ["save", "map"]
+
+[lib]
+name = "easy_safe"
+path = "easy_safe_pack/src/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+members = [
+
+]
+
+[dependencies]
+walkdir = "2"
+regex = "1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+log = "0.4.17"
+
+[dev-dependencies]
+assert_cmd = "1.0.1"
+predicates = "1.0.5"
+
+[profile.dev]
+opt-level=0
+debug = true
+rpath = false
+lto = false
+debug-assertions = true
+codegen-units = 4
+
+[profile.release]
+opt-level=3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+
+[profile.test]
+opt-level = 1
+debug = true
+rpath = false
+lto = false
+debug-assertions = true
+codegen-units = 4
+
+[profile.bench]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1

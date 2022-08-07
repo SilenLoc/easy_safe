@@ -5,7 +5,6 @@ extern crate core;
 mod tests {
     use std::fs;
     use crate::disk_pers::{create_or_load_map_env, MapEnv};
-    use crate::persistence::disk_pers::{create_or_load_map_env, MapEnv};
 
     fn clear_files(name: &str) {
         if fs::remove_file(name).is_ok() {};

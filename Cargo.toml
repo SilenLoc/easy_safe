@@ -8,7 +8,6 @@ homepage = "https://easy_safe.rs/"
 documentation = "https://easy_safe.rs/bitflags"
 repository = "https://github.com/SilenLoc/easy_safe"
 readme = "README.md"
-categories = ["save", "map"]
 
 [lib]
 name = "easy_safe"

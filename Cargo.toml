@@ -1,6 +1,6 @@
 [package]
 name = "easy_safe"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "an easy way to save string values on disk, in short -string maps on disk-"

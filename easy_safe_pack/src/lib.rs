@@ -1,24 +1,28 @@
+/// easy_safe
+/// yes it is not easy_save since this crate also wants to be safe to use while saving I called
+/// it easy_safe
+///
+/// This is a crate that should make it possible to save and load strings with keys from disk
+/// It works as a map and actually wraps a map
+/// It keeps the ownership model as you know it
+/// but you may always call create_or_load_map_env("somename")
+/// at any place in your code, with the same name it was first being called
+/// This makes it possible to leak data through places where the data should not be
+/// as you can imagine, you should be careful to not trying to use multiple environments concurrently
 
-//! yes it is not easy_save since this crate also wants to be safe to use while saving I called
-//! it easy_safe
-//!
-//! This is a crate that should make it possible to save and load strings with keys from disk
-//! It works as a map and actually wraps a map
-//! It keeps the ownership model as you know it
-//! but you may always call ```create_or_load_map_env("somename")```
-//! at any place in your code, with the same name it was first being called
-//! This makes it possible to leak data through places where the data should not be
-//! as you can imagine, you should be careful to not trying to use multiple environments concurrently
-//!
-//! # Example
-//! ```
-//! use easy_safe::{create_or_load_map_env, MapEnv};
-//!
-//! let mut  map_env: MapEnv = create_or_load_map_env("somename");
-//! map_env.put("somekey".to_string(), "somevalue".to_string());
-//! let value = map_env.get("somekey".to_string()).unwrap();
-//! assert_eq!(value, "somevalue");
-//! ```
+
+/// # Example
+/// ```
+/// use easy_safe::{create_or_load_map_env, MapEnv};
+///
+/// let mut  map_env: MapEnv = create_or_load_map_env("somename");
+/// map_env.put("somekey".to_string(), "somevalue".to_string());
+/// let value = map_env.get("somekey".to_string()).unwrap();
+/// assert_eq!(value, "somevalue");
+/// ```
+
+
+/// map environment
 mod mapenv;
 pub use crate::mapenv::disk_pers::{create_or_load_map_env, MapEnv};
 

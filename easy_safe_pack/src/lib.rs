@@ -14,15 +14,16 @@ extern crate core;
 //! at any place in your code, with the same name it was first being called
 //! This makes it possible to leak data through places where the data should not be
 //! as you can imagine, you should be careful to not trying to use multiple environments concurrently
-///
-/// ```
-/// use easy_safe::{create_or_load_map_env, MapEnv};
-///
-/// let mut  map_env: MapEnv = create_or_load_map_env("somename");
-/// map_env.put("somekey".to_string(), "somevalue".to_string());
-/// let value = map_env.get("somekey".to_string()).unwrap();
-/// assert_eq!(value, "somevalue");
-/// ```
+//!
+//! # Example
+//! ```
+//! use easy_safe::{create_or_load_map_env, MapEnv};
+//!
+//! let mut  map_env: MapEnv = create_or_load_map_env("somename");
+//! map_env.put("somekey".to_string(), "somevalue".to_string());
+//! let value = map_env.get("somekey".to_string()).unwrap();
+//! assert_eq!(value, "somevalue");
+//! ```
 
 #[cfg(test)]
 mod tests {

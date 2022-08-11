@@ -68,7 +68,7 @@ pub mod disk_pers {
         /// deletes the value in the in memory map and then saves the map to disk
         /// and also returns the value
 
-        pub(crate) fn delete(&mut self, key: &str) {
+        pub fn delete(&mut self, key: &str) {
             self.inner.inner.remove(key);
             self.update_outer();
         }

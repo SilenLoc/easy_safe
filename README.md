@@ -8,15 +8,16 @@
   This means you can always come back and access your file if you call it with the right name
 
 Example
+
 ```rust
- use easy_safe::{create_or_load_map_env, MapEnv};
+use easy_safe::{create_or_load_map_env, MapEnv};
   
- let mut  map_env: MapEnv = create_or_load_map_env("somename");
- map_env.put("somekey", "somevalue");
- let value = map_env.get("somekey").unwrap();
- assert_eq!(value, "somevalue");
+let mut  map_env: MapEnv = create_or_load_map_env("somename");
+map_env.put("somekey", "somevalue");
+let value = map_env.get("somekey").unwrap();
+assert_eq!(value, "somevalue");
     
-let mut  same_file_map_env: MapEnv = create_or_load_map_env("somename");
+let mut same_file_map_env: MapEnv = create_or_load_map_env("somename");
 let also_the_value = same_file_map_env.get("somekey").unwrap();
 assert_eq!(value, "somevalue");
 ```

@@ -1,8 +1,3 @@
-mod mapenv;
-pub use crate::mapenv::disk_pers::{create_or_load_map_env, MapEnv};
-
-extern crate core;
-
 
 //! yes it is not easy_save since this crate also wants to be safe to use while saving I called
 //! it easy_safe
@@ -24,6 +19,10 @@ extern crate core;
 //! let value = map_env.get("somekey".to_string()).unwrap();
 //! assert_eq!(value, "somevalue");
 //! ```
+mod mapenv;
+pub use crate::mapenv::disk_pers::{create_or_load_map_env, MapEnv};
+
+extern crate core;
 
 #[cfg(test)]
 mod tests {

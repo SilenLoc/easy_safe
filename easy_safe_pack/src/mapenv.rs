@@ -10,7 +10,6 @@ pub struct PersistenceEnv {
 
 impl PersistenceEnv {
     pub fn save_to_local(&self, to_save: &str) {
-
         let mut file = File::create(&self.name).unwrap();
         file.write_all(to_save.as_bytes()).expect("could not write");
     }
@@ -56,22 +55,26 @@ pub mod disk_pers {
         /// put will first try to load the newest file,
         /// puts the value into the in memory map and then saves the map to disk
         /// also return the value
-        pub fn put(&mut self, key: String, value: String) -> Option<String> {
+        pub fn put(&mut self, key: &str, value: &str) -> Option<String> {
             self.update_inner();
-            let value = self.inner.inner.insert(key, value);
+            let value = self.inner.inner.insert(
+                key.parse().unwrap(),
+                value.parse().unwrap()
+            );
             self.update_outer();
             value
         }
 
         /// deletes the value in the in memory map and then saves the map to disk
         /// and also returns the value
-        pub fn delete(&mut self, key: String) {
-            self.inner.inner.remove(&*key);
+
+        pub(crate) fn delete(&mut self, key: &str) {
+            self.inner.inner.remove(key);
             self.update_outer();
         }
 
         /// get trys to load the map from disk and then attempts to get the value from the in memory map
-        pub fn get(&mut self, key: String) -> Option<&String> {
+        pub fn get(&mut self, key: &str) -> Option<&String> {
             self.update_inner();
             self.inner.inner.get(&*key)
         }
@@ -105,13 +108,13 @@ pub mod disk_pers {
     ///```
     ///  use easy_safe::{create_or_load_map_env, MapEnv};
     ///  let mut  map_env: MapEnv = create_or_load_map_env("somename");
-    ///  map_env.put("somekey".to_string(), "somevalue".to_string());
-    ///  let value = map_env.get("somekey".to_string()).unwrap();
+    ///  map_env.put("somekey", "somevalue");
+    ///  let value = map_env.get("somekey").unwrap();
     ///  assert_eq!(value, "somevalue");
     ///
     ///  let mut  same_file_map_env: MapEnv = create_or_load_map_env("somename");
-    ///  let also_the_value = same_file_map_env.get("somekey".to_string()).unwrap();
-    ///  assert_eq!(value, "also_the_value");
+    ///  let also_the_value = same_file_map_env.get("somekey").unwrap();
+    ///  assert_eq!(value, "somevalue");
     ///```
     pub fn create_or_load_map_env(name: &str) -> MapEnv {
         let pers_env = env_default_at(name);

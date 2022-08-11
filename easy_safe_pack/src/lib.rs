@@ -16,8 +16,8 @@
 /// use easy_safe::{create_or_load_map_env, MapEnv};
 ///
 /// let mut  map_env: MapEnv = create_or_load_map_env("somename");
-/// map_env.put("somekey".to_string(), "somevalue".to_string());
-/// let value = map_env.get("somekey".to_string()).unwrap();
+/// map_env.put("somekey", "somevalue");
+/// let value = map_env.get("somekey").unwrap();
 /// assert_eq!(value, "somevalue");
 /// ```
 
@@ -47,8 +47,8 @@ mod tests {
     #[test]
     fn create_env_put_and_get() {
         let mut map_env: MapEnv = create_or_load_map_env("name2");
-        map_env.put("somekey".to_string(), "somevalue".to_string());
-        let value = map_env.get("somekey".to_string()).unwrap();
+        map_env.put("somekey", "somevalue");
+        let value = map_env.get("somekey").unwrap();
         assert_eq!(value, "somevalue");
         clear_files("name2");
     }
@@ -56,9 +56,9 @@ mod tests {
     #[test]
     fn create_env_put_and_delete() {
         let mut map_env: MapEnv = create_or_load_map_env("name4");
-        map_env.put("somekey".to_string(), "somevalue".to_string());
-        map_env.delete("somekey".to_string());
-        let value = map_env.get("somekey".to_string());
+        map_env.put("somekey", "somevalue");
+        map_env.delete("somekey");
+        let value = map_env.get("somekey");
         assert_eq!(value, None);
         clear_files("name4");
     }

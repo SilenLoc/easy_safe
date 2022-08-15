@@ -1,6 +1,6 @@
 [package]
 name = "easy_safe"
-version = "0.1.8"
+version = "0.1.9"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 documentation = "https://docs.rs/easy_safe"

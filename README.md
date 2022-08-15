@@ -1,11 +1,12 @@
 # easy_safe
 
-> An easy unstable crate to save strings into a map that is saved on the disk
- creates a new map environment with the specified name
-    the name corresponds to the file saved and loaded in your filesystem
- If the file is already there it will load from that file
+> An easy unstable crate to save strings into a map that is saved on the disk.
 
-  This means you can always come back and access your file if you call it with the right name
+ The normal map_env creates a new map environment with the specified name.
+ The name corresponds to the file saved and loaded in your filesystem.
+ If the file is already there it will load from that file.
+
+ This means you can always come back and access your file if you call it with the right name
 
 Example
 
